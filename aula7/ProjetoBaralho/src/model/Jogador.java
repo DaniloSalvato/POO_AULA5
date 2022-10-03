@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Jogador {
     private static int sequence;
-    private Valor escolha;
+    private Carta escolha;
     private int id;
     private String nome;
     private List<Carta> cartasJogador = new ArrayList<>();
@@ -38,11 +38,11 @@ public class Jogador {
         this.nome = nome;
     }
 
-    public Valor getEscolha() {
+    public Carta getEscolha() {
         return escolha;
     }
 
-    public void setEscolha(Valor escolha) {
+    public void setEscolha(Carta escolha) {
         this.escolha = escolha;
     }
 
@@ -54,7 +54,6 @@ public class Jogador {
     public String toString() {
         return "Id = " + id + "\n" +
                "Nome = " + nome + "\n";
-
     }
 
     public void verMao (){
@@ -64,16 +63,8 @@ public class Jogador {
     public void escolherCarta(Scanner scan, int posicao, List<Jogador> jogadores) {
 
         System.out.println("Selecione sua carta (1, 2 ou 3):");
-        int escolha_aux = scan.nextInt();
-        Valor valor = null;
-
-        for(Carta carta : getCartasJogador()){
-            if(carta.getValor().name().equals(getCartasJogador().get(escolha_aux - 1).getValor().name())){
-                valor = carta.getValor();
-            }
-        }
-        jogadores.get(posicao).setEscolha(valor);
-        System.out.println("Carta escolhida: " + getCartasJogador().get(escolha_aux -1));
-
+        int escolha = scan.nextInt();
+        jogadores.get(posicao).setEscolha(getCartasJogador().get(escolha - 1));
+        System.out.println("Carta escolhida: " + getCartasJogador().get(escolha - 1));
     }
 }

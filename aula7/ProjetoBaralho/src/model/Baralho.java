@@ -10,6 +10,8 @@ import java.util.List;
 public class Baralho {
 
     private Carta vira;
+
+    private Carta manilha;
     private List<Carta> cartas = new ArrayList<>();
 
     public Carta getVira() {
@@ -55,23 +57,28 @@ public class Baralho {
         //distribuir
         public static void distrubuir(List<Jogador> jogadores, Baralho baralho) {
             for (Jogador jogador : jogadores) {
+                if(!jogador.getCartasJogador().isEmpty()) {
+                    jogador.getCartasJogador().removeAll(jogador.getCartasJogador().subList(0, 3));
+                }
                 jogador.getCartasJogador().addAll(baralho.getCartas().subList(0, 3));
                 baralho.getCartas().removeAll(baralho.getCartas().subList(0, 3));
             }
         }
 
-//    public static List<Carta> devolverCartas(int posicao, Carta cartas) {
-//        return cartas.remove(posicao);
-//
-//    }
-
         //virar manilha
-        public Carta virarManilha(Baralho baralho) {
+        public Carta definirVira(Baralho baralho) {
             return vira = baralho.cartas.get(0);
         }
 
-        public void mostrarManilha(){
+        public void mostrarVira(){
             System.out.print("Vira : ");
             System.out.println(vira);
+        }
+
+        public boolean definirManilha(Carta carta){
+            if(carta.getValor().ordinal() == vira.getValor().ordinal() + 1){
+                return true;
+            }
+            return false;
         }
 }

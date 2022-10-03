@@ -1,4 +1,3 @@
-import constants.Valor;
 import model.Baralho;
 import model.Jogador;
 
@@ -43,8 +42,8 @@ public class GerenciarJogo {
             System.out.println("jogador 2");
             jogadores.get(1).verMao();
             System.out.println("");
-            baralho.virarManilha(baralho);
-            baralho.mostrarManilha();
+            baralho.definirVira(baralho);
+            baralho.mostrarVira();
             System.out.println("");
 
             do {
@@ -59,6 +58,7 @@ public class GerenciarJogo {
                     System.out.println("");
 
                     compararCarta(jogadores);
+
                     System.out.println("--------------------------------------------------------------");
 
                     if (auxPontuacaoRodadaJ1 == 2 ) {
@@ -72,15 +72,13 @@ public class GerenciarJogo {
                         auxPontuacaoTotalJ2++;
                         break;
                     }
-
                     if (auxPontuacaoRodadaJ1 == 3 ) {
-                        System.out.println("Jogador 1 ganhou a rodada" + rodada);
+                        System.out.println("Jogador 1 ganhou a rodada" );
                         auxPontuacaoTotalJ1++;
                         break;
                     }
-
                     if (auxPontuacaoRodadaJ2 == 3 ) {
-                        System.out.println("Jogador 2 ganhou a rodada" + rodada);
+                        System.out.println("Jogador 2 ganhou a rodada" );
                         auxPontuacaoTotalJ2++;
                         break;
                     }
@@ -90,14 +88,26 @@ public class GerenciarJogo {
     }
 
     private static void compararCarta(List<Jogador> jogadores) {
-        if(jogadores.get(0).getEscolha().ordinal() > jogadores.get(1).getEscolha().ordinal()){
+        if(jogadores.get(0).getEscolha().getValor().ordinal() > jogadores.get(1).getEscolha().getValor().ordinal()){
             System.out.println("Jogador 1 ganhou ");
             System.out.println("");
             auxPontuacaoRodadaJ1++;
         }else{
-            System.out.println("Jogador 2 ganhou ");
-            System.out.println("");
-            auxPontuacaoRodadaJ2++;
+            if(jogadores.get(0).getEscolha().getValor().ordinal() < jogadores.get(1).getEscolha().getValor().ordinal()) {
+                System.out.println("Jogador 2 ganhou ");
+                System.out.println("");
+                auxPontuacaoRodadaJ2++;
+            }else{
+                if(jogadores.get(0).getEscolha().getNaipe().ordinal() > jogadores.get(1).getEscolha().getNaipe().ordinal()){
+                    System.out.println("Jogador 1 ganhou ");
+                    System.out.println("");
+                    auxPontuacaoRodadaJ1++;
+                }else{
+                    System.out.println("Jogador 2 ganhou ");
+                    System.out.println("");
+                    auxPontuacaoRodadaJ2++;
+                    }
+                }
+            }
         }
     }
-}
