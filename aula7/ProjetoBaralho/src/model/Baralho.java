@@ -22,6 +22,14 @@ public class Baralho {
         this.vira = vira;
     }
 
+    public Carta getManilha() {
+        return manilha;
+    }
+
+    public void setManilha(Carta manilha) {
+        this.manilha = manilha;
+    }
+
     public List<Carta> getCartas() {
         return cartas;
     }

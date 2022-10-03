@@ -1,4 +1,5 @@
 import model.Baralho;
+import model.Carta;
 import model.Jogador;
 
 import java.util.*;
@@ -37,16 +38,16 @@ public class GerenciarJogo {
             System.out.println("");
             System.out.println("Embaralhando...");
             System.out.println("");
-            System.out.println("jogador 1");
-            jogadores.get(0).verMao();
-            System.out.println("jogador 2");
-            jogadores.get(1).verMao();
-            System.out.println("");
             baralho.definirVira(baralho);
             baralho.mostrarVira();
             System.out.println("");
 
             do {
+                System.out.println("jogador 1");
+                jogadores.get(0).verMao();
+                System.out.println("jogador 2");
+                jogadores.get(1).verMao();
+                System.out.println("");
                 rodada++;
                 if (auxPontuacaoRodadaJ1 != 3 || auxPontuacaoRodadaJ2 != 3) {
                     System.out.println("Jogador 1 escolha sua carta:");
@@ -58,6 +59,9 @@ public class GerenciarJogo {
                     System.out.println("");
 
                     compararCarta(jogadores);
+
+                    jogadores.get(0).getCartasJogador().remove(jogadores.get(0).getEscolha());
+                    jogadores.get(1).getCartasJogador().remove(jogadores.get(1).getEscolha());
 
                     System.out.println("--------------------------------------------------------------");
 
@@ -88,6 +92,7 @@ public class GerenciarJogo {
     }
 
     private static void compararCarta(List<Jogador> jogadores) {
+
         if(jogadores.get(0).getEscolha().getValor().ordinal() > jogadores.get(1).getEscolha().getValor().ordinal()){
             System.out.println("Jogador 1 ganhou ");
             System.out.println("");
